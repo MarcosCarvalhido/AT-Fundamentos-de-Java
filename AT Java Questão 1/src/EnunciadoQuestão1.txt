@@ -1,0 +1,13 @@
+O objetivo deste exemplo é de imprimir uma sequência de progressão aritmética (PA).
+Para isso, solicite ao usuário:
+    o valor de a1
+    a razão
+    e a quantidade de números da sequência finita (N)
+e faça tal impressão (PA).
+Em seguida, informe o valor da soma da sequência pelo método de Gauss.
+
+https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/a-soma-de-gauss/
+
+
+Pagina da Questão no Replit:
+    https://replit.com/@INFNET-GRPADS01C2-N1-P2-23E4/AT-1-MarcosCarvalhi1
