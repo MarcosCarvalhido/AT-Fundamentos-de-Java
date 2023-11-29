@@ -2,77 +2,88 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class App {
     static Scanner userInput = new Scanner(System.in,"UTF-16");
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception{
 
         //Declaração dos valores.
         int numeroInicial = 0; // Valor de a1.
         int diferença = 0; // A Razão;
         int quantidade = 0; // A quantidade de números da sequência finita (N).
-        String entrada; // O input do usuario.
+        String entrada;  // Recebe os inputs do usuario.; // O input do usuario.
         ArrayList<Integer> PA = new ArrayList<Integer>(); // Resultado da P.A.
+        
+        //Pergunta para o usuario e verifica as informações necessarias.
+        entrada = Perguntar("numeroInicial");
+        numeroInicial = Integer.parseInt(ValidarEntrada(entrada));
 
-        //Executa o codigo enquanto os valores forem validos.
-        do {
+        entrada = Perguntar("diferença");
+        diferença = Integer.parseInt(ValidarEntrada(entrada));
+
+        entrada = Perguntar("quantidade");
+        quantidade = Integer.parseInt(ValidarEntrada(entrada));
+
+        //Calcula a P.A. com os valores informados e guarda em um ArrayList.
+        CalcularPA(numeroInicial, diferença, quantidade, PA);
+
+        //Mostra no console o resultado.
+        mostrarPA(PA);
+        
+        //Calcula e Mostra o valor do calculo de gaus.
+        MostrarGaus(CalcularGaus(PA));
             
-            //Pergunta para o usuario e verifica as informações necessarias.
-            entrada = PerguntarnumeroInicial();
-            if (VerificarEntrada(entrada)) {
-                numeroInicial = Integer.parseInt(entrada);
-            }
-            else{
-                ErroNumerico();
-                break;
-            }
-            entrada = PerguntarDiferença();
-            if (VerificarEntrada(entrada)) {
-                diferença = Integer.parseInt(entrada);
-            }
-            else{
-                ErroNumerico();
-                break;
-            }
-            entrada = PerguntarDiferença();
-            if (VerificarEntrada(entrada)) {
-                quantidade = Integer.parseInt(entrada);
-            }
-            else{
-                ErroNumerico();
-                break;
-            }
+    }
     
-            //Calcula a P.A. com os valores informados e guarda em um ArrayList.
-            CalcularPA(numeroInicial, diferença, quantidade, PA);
-    
-            //Mostra no console o resultado.
-            mostrarPA(PA);
-        } while (true);
-    }
-    // Recebe os inputs do usuario.
-    public static String PerguntarnumeroInicial(){
+    // Recebe os inputs ao usuario.
+    public static String Perguntar(String tipo){
+        String pergunta = "";
+        
+        //Seleciona uma das opçõe de pergunta possiveis;
+        switch (tipo) {
+            case "numeroInicial":
+                pergunta = "Qual o valor inicial da P.A. ?";
+                break;
+        
+            case "diferença":
+                pergunta = "Qual a diferença(Razão) da P.A. ?";
+                break;
+        
+            case "quantidade":
+                pergunta = "Qual a quantidade de itens da P.A. ?";
+                break;
+        
+            default:
+                break;
+        }
+
+        //Pergunta e guarda a resposta do usuario.
         userInput = new Scanner(System.in);
-        System.out.println("Qual o valor inicial da P.A. ?"); 
-        return userInput.nextLine();
-    }
-    public static String PerguntarDiferença(){
-        userInput = new Scanner(System.in);
-        System.out.println("Qual a diferença(Razão) da P.A. ?"); 
-        return  userInput.nextLine();
-    }
-    public static String PerguntarQuantidade(){
-        userInput = new Scanner(System.in);
-        System.out.println("Qual a quantidade de itens da P.A. ?"); 
+        System.out.println(pergunta); 
         return userInput.nextLine();
     }
 
-    //Verifica se uma entrada é numerica ou não nula.
-    public static Boolean VerificarEntrada(String entrada){
+    //Repete a pergunta se estiver invalida.
+    public static String ValidarEntrada(String entrada){
+        boolean error = false;
+       do {
+            if (VerificarSeNumerico(entrada)) {
+                error = false;
+            }
+            else{
+                ErroNumerico();
+                error = true;
+            }
+        } while (error);
+        return entrada;
+    }
+    
+    //Verifica se a entrada é numerica ou não nula.
+    public static Boolean VerificarSeNumerico(String entrada){
         if(entrada != null){
             try {
                 int numero = Integer.parseInt(entrada);
             } catch (Exception e) {
-                
                 return false;
             }
             return true;
@@ -92,17 +103,51 @@ public class App {
             numeroInicial = soma;
         }
     }
+
+    //Calcula o valor da soma de gaus.
+    public static int CalcularGaus(ArrayList<Integer> PA){
+        int primeiroNumero;
+        int ultimoNumero;
+
+        primeiroNumero = PA.get(0);
+        ultimoNumero = PA.get(PA.size() - 1);
+
+        return ((primeiroNumero + ultimoNumero) * PA.size()); 
+    }
     
     //Mostra as P.A no console.
     public static void mostrarPA(ArrayList<Integer> PA){
-        System.out.println("A P.A. criada com os valores apresentados é: "); 
-        String listaPA = " ";
-        for (int item : PA) {
-            // listaPA.concat(Double.toString(item) + ", ");
-            String a = "a";
-            a.concat(listaPA);
+        LimparTela();
+
+        System.out.print("A P.A. criada com os valores apresentados é: "); 
+        String listaPA = "";
+        
+        // Adciona uma virgula entre cada numero, menos pro ultimo item da lista, onde um ponto final é adcionado.
+        for (int index = 0; index < PA.size(); index++) {
+
+            if (index == PA.size() -1) {
+                listaPA += Integer.toString(PA.get(index)) + ".";
+            }
+            else if (index == PA.size() -2) {
+                listaPA += Integer.toString(PA.get(index)) + " e ";
+            }
+            else{
+                listaPA += Integer.toString(PA.get(index)) + ", ";
+            }
         }
         System.out.println(listaPA);
+    }
+
+    //limpa a tela de comandos.
+    public static void LimparTela() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
+
+
+    //Mostra o resultado da soma de gaus.
+    public static void MostrarGaus(int gaus){
+        System.out.println("A soma de gaus (soma de todos os valores da lista) calculada apartir da P.A. é de: " + gaus + "."); 
     }
 
     //Mostra uma mensagem de erro caso a entrada não seje valida.
