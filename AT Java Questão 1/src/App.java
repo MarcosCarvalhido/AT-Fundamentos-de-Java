@@ -2,6 +2,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.lang.model.util.ElementScanner6;
+
 
 public class App {
     static Scanner userInput = new Scanner(System.in,"UTF-16");
@@ -11,18 +13,18 @@ public class App {
         int numeroInicial = 0; // Valor de a1.
         int diferença = 0; // A Razão;
         int quantidade = 0; // A quantidade de números da sequência finita (N).
-        String entrada;  // Recebe os inputs do usuario.; // O input do usuario.
+        String entrada;  // Recebe os inputs do usuario.;
         ArrayList<Integer> PA = new ArrayList<Integer>(); // Resultado da P.A.
         
         //Pergunta para o usuario e verifica as informações necessarias.
         entrada = Perguntar("numeroInicial");
-        numeroInicial = Integer.parseInt(ValidarEntrada(entrada));
+        numeroInicial = Integer.parseInt(entrada);
 
         entrada = Perguntar("diferença");
-        diferença = Integer.parseInt(ValidarEntrada(entrada));
+        diferença = Integer.parseInt(entrada);
 
         entrada = Perguntar("quantidade");
-        quantidade = Integer.parseInt(ValidarEntrada(entrada));
+        quantidade = Integer.parseInt(entrada);
 
         //Calcula a P.A. com os valores informados e guarda em um ArrayList.
         CalcularPA(numeroInicial, diferença, quantidade, PA);
@@ -57,24 +59,21 @@ public class App {
                 break;
         }
 
-        //Pergunta e guarda a resposta do usuario.
+        //Pergunta a resposta do usuario.
         userInput = new Scanner(System.in);
         System.out.println(pergunta); 
-        return userInput.nextLine();
+        String entrada = userInput.nextLine();
+        
+        //Valida e devolve a resposta do usuario.
+        return ValidarEntrada(entrada,tipo); 
     }
 
     //Repete a pergunta se estiver invalida.
-    public static String ValidarEntrada(String entrada){
-        boolean error = false;
-       do {
-            if (VerificarSeNumerico(entrada)) {
-                error = false;
-            }
-            else{
-                ErroNumerico();
-                error = true;
-            }
-        } while (error);
+    public static String ValidarEntrada(String entrada, String pergunta){
+        if (!VerificarSeNumerico(entrada)) {
+            ErroNumerico();
+            entrada = Perguntar(pergunta);
+        }
         return entrada;
     }
     
@@ -118,24 +117,25 @@ public class App {
     //Mostra as P.A no console.
     public static void mostrarPA(ArrayList<Integer> PA){
         LimparTela();
+        System.out.print("A P.A. criada com os valores apresentados é: " + TransformarLista(PA)); 
+    }
 
-        System.out.print("A P.A. criada com os valores apresentados é: "); 
-        String listaPA = "";
-        
-        // Adciona uma virgula entre cada numero, menos pro ultimo item da lista, onde um ponto final é adcionado.
-        for (int index = 0; index < PA.size(); index++) {
+    //Transforma um ArrayList numerica em uma string para facilitar a visualização.
+    public static String TransformarLista(ArrayList<Integer> lista){
+        String resultado = "";
+        for (int index = 0; index < lista.size(); index++) {
 
-            if (index == PA.size() -1) {
-                listaPA += Integer.toString(PA.get(index)) + ".";
+            if (index == lista.size() -1) {
+                resultado += Integer.toString(lista.get(index)) + ".";
             }
-            else if (index == PA.size() -2) {
-                listaPA += Integer.toString(PA.get(index)) + " e ";
+            else if (index == lista.size() -2) {
+                resultado += Integer.toString(lista.get(index)) + " e ";
             }
             else{
-                listaPA += Integer.toString(PA.get(index)) + ", ";
+                resultado += Integer.toString(lista.get(index)) + ", ";
             }
         }
-        System.out.println(listaPA);
+        return resultado;
     }
 
     //limpa a tela de comandos.

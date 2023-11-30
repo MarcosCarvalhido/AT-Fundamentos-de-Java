@@ -1,0 +1,5 @@
+Solicite um número natural ao usuário.
+Em seguida, imprima a sequência de números primos baseado neste valor.
+
+Link para a questão no replit:
+    https://replit.com/@INFNET-GRPADS01C2-N1-P2-23E4/AT-2-MarcosCarvalhi1
