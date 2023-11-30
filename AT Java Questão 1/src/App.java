@@ -117,7 +117,7 @@ public class App {
     //Mostra as P.A no console.
     public static void mostrarPA(ArrayList<Integer> PA){
         LimparTela();
-        System.out.print("A P.A. criada com os valores apresentados é: " + TransformarLista(PA)); 
+        System.out.println("A P.A. criada com os valores apresentados é: " + TransformarLista(PA)); 
     }
 
     //Transforma um ArrayList numerica em uma string para facilitar a visualização.

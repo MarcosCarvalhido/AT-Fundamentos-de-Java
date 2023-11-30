@@ -12,10 +12,10 @@ public class App {
         numero = Integer.parseInt(PerguntarNumero());
 
         //Calcula a sequencia de primos e guarda no array list;
-        CalcularPrimos(numero, primos);
+        GuardarPrimos(numero, primos);
 
         //Exibe a lista de numeros primos.
-        MostrarPrimos(primos);
+        MostrarPrimos(primos,numero);
     }
 
     //Pergunta e guarda a resposta do usuario.
@@ -56,8 +56,8 @@ public class App {
     }
 
     //Calcula a sequencia de numeros primos e guarda na array list.
-    public static void CalcularPrimos(int numero,ArrayList<Integer> primos){
-        for (int index = numero; index > 1 ; index--) {
+    public static void GuardarPrimos(int numero,ArrayList<Integer> primos){
+        for (int index = numero; index >= 2 ; index--) {
             if (VerificarPrimo(index)){
                 primos.add(index);
             }
@@ -66,15 +66,14 @@ public class App {
 
     //Verifica se o numero é primo.
     public static boolean VerificarPrimo(int numero){
-        if ((numero % 2 != 0) && (numero % 3 != 0) && (numero % 5 != 0)) {
-            return true;
+        boolean possuiPrimo = true;
+    
+        for (int index = 2; index < numero; index++) {
+            if (numero % index == 0) {
+                possuiPrimo = false;
+            }
         }
-        else if((numero == 2) || (numero == 3) || (numero == 5)){
-            return true;        
-        }
-        else{
-        return false;
-        }
+        return possuiPrimo;
     }
 
     
@@ -97,9 +96,9 @@ public class App {
     }
 
     //Exibe a lista de numeros primos.
-    public static void MostrarPrimos(ArrayList<Integer> primos){
+    public static void MostrarPrimos(ArrayList<Integer> primos,int numero){
         LimparTela();
-        System.out.println(MessageFormat.format("A sequencia de numeros primos apartir do numero {0} é: {1}",primos.get(0),TransformarLista(primos))); 
+        System.out.println(MessageFormat.format("A sequencia de numeros primos apartir do numero {0} é: {1}",numero,TransformarLista(primos))); 
     }
     
     //limpa a tela de comandos.
