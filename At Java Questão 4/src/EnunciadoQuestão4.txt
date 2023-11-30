@@ -1,0 +1,7 @@
+Solicite ao usuário um valor entre 1 e 5.
+imprima a sequência de números primos usando o método do número de Fermat.
+
+https://pt.wikipedia.org/wiki/N%C3%BAmero_de_Fermat
+
+Pagina no Replit da questão;
+    https://replit.com/@INFNET-GRPADS01C2-N1-P2-23E4/AT-4-MarcosCarvalhi1

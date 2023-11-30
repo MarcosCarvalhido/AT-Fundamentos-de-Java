@@ -71,8 +71,10 @@ public class App {
     //Repete a pergunta se estiver invalida.
     public static String ValidarEntrada(String entrada, String pergunta){
         if (!VerificarSeNumerico(entrada)) {
-            ErroNumerico();
-            entrada = Perguntar(pergunta);
+           do {
+               ErroNumerico();
+               entrada = Perguntar(pergunta);
+           } while (!VerificarSeNumerico(entrada));
         }
         return entrada;
     }

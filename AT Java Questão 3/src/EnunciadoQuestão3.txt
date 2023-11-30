@@ -1,0 +1,6 @@
+Elabore um programa no qual seja solicitado ao usuário um número natural.
+Em seguida, faça a verificação se este número é primo
+e informe ao usuário o resultado,indicando se é ou não primo.
+
+Pagina da questão no replit:
+    https://replit.com/@INFNET-GRPADS01C2-N1-P2-23E4/AT-3-MarcosCarvalhi1
