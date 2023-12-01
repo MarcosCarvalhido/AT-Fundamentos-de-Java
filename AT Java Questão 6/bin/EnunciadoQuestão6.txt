@@ -1,0 +1,65 @@
+CLASSE PESSOA
+    Escreva uma classe Pessoa com métodos para encapsular as propriedades 
+            peso
+            idade
+        Os métodos devem se chamar
+            setPeso
+            setIdade 
+        Cada método deve receber um parâmetro com o mesmo nome e tipo do atributo correspondente.
+
+    Crie na classe Pessoa um método doadorDeSangue que verifica se a pessoa pode doar sangue.
+        Para ser doador, a pessoa tem que:
+            ter mais de 18 anos
+            no máximo 69 anos de idade    
+            ter pelo menos 50kg
+        O método deve retornar um boolean:
+            true caso possa ser doador
+            false caso contrário.
+
+    crie na classe Pessoa :
+        um atributo sobrenome;
+        um método nomeCompleto
+            que retorna o nome completo da pessoa.
+        um método iniciais
+            que retorna as iniciais da pessoa.
+        um método construtor que receba três parâmetros:
+            nome (String)
+            idade (int)
+            peso (double)
+            e atribua a cada um dos atributos o valor do parâmetro homônimo.
+    Modifique a classe Pessoa para incluir :
+        Um atributo endereco
+            do tipo Endereco.
+        Um construtor de pessoa
+            que receba seu nome, sobrenome e um endereço completo
+        Um método destinatario
+            que imprime o nome e o endereço da pessoa, no seguinte formato:
+            "Donald Knuth. Rua São José, 90 - sala 101, Centro, Rio de Janeiro - RJ - Brasil".
+CLASSE ENDEREÇO
+    Escreva uma classe Endereco com os seguintes membros :
+        Os atributos
+            logradouro
+            numero
+            complemento
+            bairro
+            municipio
+            estado
+            pais
+        todos do tipo String.
+    Um construtor com 7 parâmetros
+        e cujos valores serão atribuídos aos atributos.
+    Um método imprimir
+        que imprime o endereço no seguinte formato:
+        "Rua São José, 90 - sala 101, Centro, Rio de Janeiro - RJ - Brasil".
+TESTE
+    Instancie um objeto do tipo Pessoa
+        chamado p1, já com nome, idade e peso;
+    Exiba em tela o nome completo da pessoa;
+    Altere o peso da pessoa
+        adicionando-lhe 2kg;
+    Instancie uma segunda Pessoa
+        chamada p2, da seguinte forma: Pessoa p2 = p1;
+    Imprima a idade de p2 em tela;
+    Altere a idade de p1
+        adicionando 1 ano;
+    Imprima novamente a idade de p2 em tela.
