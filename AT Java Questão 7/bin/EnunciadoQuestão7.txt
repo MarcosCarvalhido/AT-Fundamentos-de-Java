@@ -1,0 +1,31 @@
+Crie uma classe chamada ArCondicionado
+        temperatura
+        minimo
+        maximo
+        incremento
+    do tipo double.
+    A temperatura deve ser sempre inicializada como 25.0 no construtor da classe.
+    
+    Defina os métodos modificadores
+        aumentarTemperatura
+            Modifique o método aumentarTemperatura, de modo que a temperatura não passe do valor de maximo.
+        reduzirTemperatura
+            Realize o mesmo com o método reduzirTemperatura, não permitindo que fique abaixo do valor de minimo.
+        cujos efeitos são 
+            aumentar a temperatura em 5 graus
+            diminuir a temperatura em 5 graus
+        Modifique os métodos aumentarTemperatura e reduzirTemperatura,
+            que passarão a usar o valor de incremento em vez de usar o valor explícito 5.0.
+        Adicione um método chamado setIncremento
+            que recebe um parâmetro apropriado e configura o valor de incremento com o valor do parâmetro.
+        Defina um método de acesso para obter o valor de temperatura.
+
+    Os valores de minimo e maximo devem ser fornecidos por parâmetros passados a um construtor.
+        O valor de incremento deve ser 5.0 no construtor.
+
+Crie uma classe chamada ArCondicionadoCentral.
+    Um ArCondicionadoCentral possui 3 objetos ArCondicionado.
+    Ao inicializar o ArCondicionadoCentral, cada ArCondicionado é inicializado com sua temperatura padrão.
+    
+    Crie um método temperatura para determinar a temperatura dada pelo ArCondicionadoCentral
+        que será a média dos 3 objetos ArCondicionado.
