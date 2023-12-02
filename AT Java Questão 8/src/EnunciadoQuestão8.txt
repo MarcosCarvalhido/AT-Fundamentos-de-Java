@@ -72,9 +72,10 @@ DICAS:
             ano: 2017
             autores: David Barnes e Michael Kölling
         A impressão deve ser:
-            BARNES, D. KÖLLING, M. (2017) Objects First with Java - A Practical Introduction Using BlueJ. Pearson Education, 2017.
-        Para cada autor: sobrenome do autor, em maiúsculas, seguido de vírgula, seguido pela inicial do primeiro nome do autor.
-            Ano do livro entre parênteses
-            Nome do livro, seguido de ponto.
-            Editora, seguida de vírgula
-            Ano do livro, seguido de ponto.
+            BARNES, D. KÖLLING, M. Objects First with Java - A Practical Introduction Using BlueJ. Pearson Education, 2017.
+        Para cada autor:
+            sobrenome do autor, em maiúsculas
+            inicial do primeiro nome do autor.
+            Nome do livro
+            Editora
+            Ano do livro
