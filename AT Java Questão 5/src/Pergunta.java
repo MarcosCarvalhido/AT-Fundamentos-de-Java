@@ -7,4 +7,6 @@ public enum Pergunta {
     MESES,
     RESGATE,
     TIPO_DE_INVESTIMENTO,
+    MENU_INICIAL,
+    MENU_FINAL,
 }

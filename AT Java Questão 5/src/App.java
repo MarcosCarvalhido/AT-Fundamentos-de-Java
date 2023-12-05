@@ -12,21 +12,25 @@ public class App {
         double cdi; //valor do juros CDI mensal
         int meses; //Tempo em meses gasto na aplicação.
 
-        RendaFixa investimento = null;
-        
-        MostrarMenu();
+        RendaFixa investimento = null; 
+
+        MostrarMenu(Pergunta.MENU_INICIAL);
+
         tipo = Integer.parseInt(PerguntarNumeros(Pergunta.TIPO_DE_INVESTIMENTO));
         nome = PerguntarNomes(Pergunta.NOME);
         cpf = PerguntarNomes(Pergunta.CPF);
         banco = PerguntarNomes(Pergunta.BANCO);
-
+        
         capital = Double.parseDouble(PerguntarNumeros(Pergunta.CAPITAL));
         cdi = Double.parseDouble(PerguntarNumeros(Pergunta.CDI));
         meses = Integer.parseInt(PerguntarNumeros(Pergunta.MESES));
-
+        
         investimento = GuardarInformações(investimento,tipo,nome,cpf,banco,capital,cdi,meses);
         
+        MostrarMenu(Pergunta.MENU_FINAL);
+
         System.out.println(investimento.toString());
+        System.out.println(investimento.calcularResgate());
         
     }
     //Seleciona uma das opçõe de pergunta possiveis;
@@ -163,9 +167,26 @@ public class App {
         return investimento;
     }
 
-    public static void MostrarMenu(){
+    public static void MostrarMenu(Pergunta tipo){
+        if(tipo == Pergunta.MENU_INICIAL)
         System.out.println("SISTEMA DE APLICAÇÃO FINANCEIRA!"); 
         System.out.println("Escolha um tipo de investimento e preencha as informações:"); 
+
+        switch (tipo) {
+            case MENU_INICIAL:
+                System.out.println("SISTEMA DE APLICAÇÃO FINANCEIRA!"); 
+                System.out.println("Escolha um tipo de investimento e preencha as informações:");                
+                break;
+        
+            case MENU_FINAL:
+                LimparTela();
+                System.out.println("APLICAÇÃO PROCESSADA!"); 
+                System.out.println("Resultados::");        
+                break;
+        
+            default:
+                break;
+        }
     }
 
     //limpa a tela de comandos.
@@ -176,6 +197,6 @@ public class App {
 
     //Mostra uma mensagem de erro caso a entrada não seje valida.
     public static void ErroNumerico(){
-        System.out.println("Apenas numeros inteiros são permitidos!"); 
+        System.out.println("Apenas numeros são permitidos!"); 
     }
 }

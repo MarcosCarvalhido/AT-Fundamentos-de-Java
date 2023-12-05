@@ -5,6 +5,11 @@ public class Poupança extends RendaFixa {
     }    
 
     @Override
+    public double calcularResgate(){
+        return 666;
+    }
+
+    @Override
     public String toString() {
         return super.toString();
     }
