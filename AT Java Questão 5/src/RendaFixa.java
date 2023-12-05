@@ -10,6 +10,7 @@ public abstract class RendaFixa {
     protected int meses; //Tempo em meses gasto na aplicação.
     protected double resgate; //Valor que sera resgatado no final da aplicação. Com o IR descontado.
 
+   //Define os atributos iniciais de um objeto Renda Fixa.
     public RendaFixa(String nome, String cpf, String banco, double capital, double cdi, int meses){
         this.nome = nome;
         this.cpf = cpf;
@@ -19,6 +20,7 @@ public abstract class RendaFixa {
         this.meses = meses;
     }
 
+    //Acessa o valor das propriedades.
     public String getNome() {
         return nome;
     }
@@ -41,6 +43,7 @@ public abstract class RendaFixa {
         return resgate;
     }
 
+    //Define o valor das propriedades.
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -68,6 +71,7 @@ public abstract class RendaFixa {
         return capital * (Math.pow((1 + cdi), meses));
     }
 
+    //Imprime os valores usados para calcular a renda.
     @Override
     public String toString() {
 

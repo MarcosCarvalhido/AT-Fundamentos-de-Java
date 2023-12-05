@@ -12,11 +12,15 @@ public class App {
         double cdi; //valor do juros CDI mensal
         int meses; //Tempo em meses gasto na aplicação.
 
-        RendaFixa investimento = null; 
+        RendaFixa investimento = null; //Objeto renda fixa que sera usado para guardar as informações.
 
+        //Mostra o menu com as perguntas.
         MostrarMenu(Pergunta.MENU_INICIAL);
-
+        
+        //Pergunta qual tipo de investimento vai ser calculado.
         tipo = Integer.parseInt(PerguntarNumeros(Pergunta.TIPO_DE_INVESTIMENTO));
+            
+        //Coleta cada uma das informações necessarias.
         nome = PerguntarNomes(Pergunta.NOME);
         cpf = PerguntarNomes(Pergunta.CPF);
         banco = PerguntarNomes(Pergunta.BANCO);
@@ -25,14 +29,16 @@ public class App {
         cdi = Double.parseDouble(PerguntarNumeros(Pergunta.CDI));
         meses = Integer.parseInt(PerguntarNumeros(Pergunta.MESES));
         
+        //Agrupa as informações e guarda.
         investimento = GuardarInformações(investimento,tipo,nome,cpf,banco,capital,cdi,meses);
         
+        //Mostra o menu com as respostas finais.
         MostrarMenu(Pergunta.MENU_FINAL);
 
         System.out.println(investimento.toString());
         System.out.println(investimento.calcularResgate());
-        
     }
+
     //Seleciona uma das opçõe de pergunta possiveis;
     public static String EscolherPergunta(Pergunta tipo){
         String pergunta = "";
@@ -70,7 +76,8 @@ public class App {
         }
         return pergunta;        
     }
-    // Recebe os inputs ao usuario.
+
+    // Recebe os inputs numericos do usuario.
     public static String PerguntarNumeros(Pergunta tipo){
         String pergunta = "";
         pergunta = EscolherPergunta(tipo);
@@ -83,7 +90,7 @@ public class App {
         return ValidarEntradaNumeros(entrada,tipo); 
     }
 
-    // Recebe os inputs ao usuario.
+    // Recebe os string ao usuario.
     public static String PerguntarNomes(Pergunta tipo){
         String pergunta = "";
         pergunta = EscolherPergunta(tipo);
@@ -96,24 +103,29 @@ public class App {
         return ValidarEntradaNomes(entrada,tipo); 
     }
 
-    //Repete a pergunta se estiver invalida.
+    //Repete a pergunta se o numero invalida.
     public static String ValidarEntradaNumeros(String entrada, Pergunta pergunta){
         if (!VerificarSeNumerico(entrada)) {
            do {
-               ErroNumerico();
+                LimparTela();
+                ErroNumerico();
                entrada = PerguntarNumeros(pergunta);
            } while (!VerificarSeNumerico(entrada));
         }
+        LimparTela();
         return entrada;
     }
 
-    //Repete a pergunta se estiver invalida.
+    //Repete a pergunta se o nome invalida.
     public static String ValidarEntradaNomes(String entrada, Pergunta pergunta){
         if (!VerificarSeString(entrada)) {
-           do {
+           do { 
+                LimparTela();
+                ErroNome();
                entrada = PerguntarNomes(pergunta);
            } while (!VerificarSeNumerico(entrada));
         }
+        LimparTela();
         return entrada;
     }
 
@@ -121,7 +133,7 @@ public class App {
     public static Boolean VerificarSeNumerico(String entrada){
         if(entrada != null){
             try {
-                int numero = Integer.parseInt(entrada);
+                double numero = Double.parseDouble(entrada);
             } catch (Exception e) {
                 return false;
             }
@@ -132,9 +144,10 @@ public class App {
         }
     }
 
-    //Verifica se a entrada é numerica ou não nula.
+    //Verifica se a entrada é palavra ou não nula.
     public static Boolean VerificarSeString(String entrada){
-        if(entrada != null){
+        // if(entrada != null || entrada == ""){
+        if(entrada == ""){
             return true;
         }
         else{
@@ -142,6 +155,7 @@ public class App {
         }
     }
 
+    //Guarda as informações criando uma instancia da classe do tipo correto.
     public static RendaFixa GuardarInformações(RendaFixa investimento, int tipo, String nome, String cpf, String banco, double capital, double cdi, int meses){
     switch (tipo) {
         case 0:
@@ -167,24 +181,22 @@ public class App {
         return investimento;
     }
 
+    //Seleciona um dos menus e exibe no consolee.
     public static void MostrarMenu(Pergunta tipo){
-        if(tipo == Pergunta.MENU_INICIAL)
-        System.out.println("SISTEMA DE APLICAÇÃO FINANCEIRA!"); 
-        System.out.println("Escolha um tipo de investimento e preencha as informações:"); 
-
         switch (tipo) {
             case MENU_INICIAL:
+                LimparTela();
                 System.out.println("SISTEMA DE APLICAÇÃO FINANCEIRA!"); 
-                System.out.println("Escolha um tipo de investimento e preencha as informações:");                
+                System.out.println("Siga os passos e preencha as informações:");                
                 break;
         
             case MENU_FINAL:
-                LimparTela();
                 System.out.println("APLICAÇÃO PROCESSADA!"); 
-                System.out.println("Resultados::");        
+                System.out.println("Resultados:");        
                 break;
         
             default:
+                ErroNumerico();
                 break;
         }
     }
@@ -198,5 +210,10 @@ public class App {
     //Mostra uma mensagem de erro caso a entrada não seje valida.
     public static void ErroNumerico(){
         System.out.println("Apenas numeros são permitidos!"); 
+    }
+
+    //Mostra uma mensagem de erro caso a entrada não seje valida.
+    public static void ErroNome(){
+        System.out.println("Apenas Palavras são permitidas!"); 
     }
 }
