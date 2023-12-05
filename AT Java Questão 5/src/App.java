@@ -1,5 +1,12 @@
 import java.util.Scanner;
 
+import TaxaFixa.CDB;
+import TaxaFixa.LCA;
+import TaxaFixa.LCI;
+import TaxaFixa.Poupança;
+import TaxaFixa.RendaFixa;
+import Ultilitarios.Pergunta;
+
 public class App {
     static Scanner userInput = new Scanner(System.in,"UTF-16");
     public static void main(String[] args) throws Exception {
@@ -7,6 +14,7 @@ public class App {
         String nome; //Nome titular da aplicação.
         String cpf; //CPF do titular da aplicação.
         String banco; //Banco onde a aplicação vai ser feita
+        String arquivo; //Nome do arquivo onde o resultado final será gravado.
         
         double capital; //Quantidade de capital aplicado.
         double cdi; //valor do juros CDI mensal
@@ -32,11 +40,19 @@ public class App {
         //Agrupa as informações e guarda.
         investimento = GuardarInformações(investimento,tipo,nome,cpf,banco,capital,cdi,meses);
         
+        //Pergunta o nome do arquivo para salvar.
+        arquivo = PerguntarNomes(Pergunta.ARQUIVO);
+
+        //Grava o resultado final em um arquivo
+        investimento.SalvarArquivo(arquivo,investimento.calcularResgate());
+
+        
         //Mostra o menu com as respostas finais.
         MostrarMenu(Pergunta.MENU_FINAL);
 
-        System.out.println(investimento.toString());
-        System.out.println(investimento.calcularResgate());
+        //Mostra as informações inseridas e o resultado final do investimento.
+        MostrarResultado(investimento);
+
     }
 
     //Seleciona uma das opçõe de pergunta possiveis;
@@ -64,11 +80,15 @@ public class App {
                 break;
         
             case CDI:
-                pergunta = "Qual o CDI atual ?";
+                pergunta = "Qual a % da taxa SELIC mensal atual ?";
                 break;
         
             case MESES:
                 pergunta = "Qual a quantidade de meses que o valor será aplicado?";
+                break;
+        
+            case ARQUIVO:
+                pergunta = "Qual será  o nome do arquivo para salvar os resultados?";
                 break;
         
             default:
@@ -146,12 +166,11 @@ public class App {
 
     //Verifica se a entrada é palavra ou não nula.
     public static Boolean VerificarSeString(String entrada){
-        // if(entrada != null || entrada == ""){
         if(entrada == ""){
-            return true;
+            return false;
         }
         else{
-            return false;
+            return true;
         }
     }
 
@@ -192,7 +211,7 @@ public class App {
         
             case MENU_FINAL:
                 System.out.println("APLICAÇÃO PROCESSADA!"); 
-                System.out.println("Resultados:");        
+                System.out.println("Dados cadastrais apresentados no arquivo salvo:");        
                 break;
         
             default:
@@ -200,6 +219,13 @@ public class App {
                 break;
         }
     }
+
+    //Mostra os resultados finais.
+    private static void MostrarResultado(RendaFixa investimento) {
+        System.out.println(investimento.toString());
+        System.out.println("Resultado Final do investimento: R$" + investimento.calcularResgate());
+    }
+
 
     //limpa a tela de comandos.
     public static void LimparTela() {  

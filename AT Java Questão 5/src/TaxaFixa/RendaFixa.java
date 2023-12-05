@@ -1,4 +1,8 @@
+package TaxaFixa;
 import java.text.MessageFormat;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.Charset;
 
 public abstract class RendaFixa {
     protected String nome; //Nome titular da aplicação.
@@ -67,14 +71,18 @@ public abstract class RendaFixa {
     }
 
     //Calcula o Resgate final.
-    public double calcularResgate(){
-        return capital * (Math.pow((1 + cdi), meses));
-    }
+    public abstract double calcularResgate();
 
     //Imprime os valores usados para calcular a renda.
     @Override
     public String toString() {
+        return MessageFormat.format("Nome: {0}, CPF: {1}, Banco: {2}, Capital: {3}, CDI: {4}, Meses: {5}", this.nome,this.cpf,this.banco,this.capital,this.cdi,this.meses);
+    }
 
-        return MessageFormat.format("Nome: {0}, CPF: {1}, Banco: {2}, Capital: {3}, CDI: {4}, Meses{5}", this.nome,this.cpf,this.banco,this.capital,this.cdi,this.meses);
+    //Grava as informações da conta em um arquivo.
+    public void SalvarArquivo(String nomeArquivo, Double resultado) throws IOException {
+        FileWriter saida = new FileWriter("src/Arquivos/" + nomeArquivo + ".txt", Charset.forName("UTF8"));
+        saida.write(toString() + " Resultado do investimento: R$ " + resultado);
+        saida.close();
     }
 }

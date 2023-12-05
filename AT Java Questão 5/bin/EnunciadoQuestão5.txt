@@ -9,7 +9,8 @@ CDB: 120% CDI
 LCI: 100% CDI
 LCA: 105% CDI
 Poupança: 0,5% a.m (não considerando a TR)
-A ideia é que o usuário forneça o valor a ser investido em R$, o tempo em meses e a taxa SELIC do ano. Em seguida, o programa informará o resultado dependendo do valor da taxa SELIC informada (Sugestão: 13% e 6%). Ao término do cálculo, os resultados serão escritos em um arquivo de texto com o nome do título do investimento.
+A ideia é que o usuário forneça o valor a ser investido em R$, o tempo em meses e a taxa SELIC do ano. Em seguida, o programa informará o resultado dependendo do valor da taxa SELIC informada (Sugestão: 13% e 6%)
+Ao término do cálculo, os resultados serão escritos em um arquivo de texto com o nome do título do investimento.
 
 Este programa deve conter obrigatoriamente:
 
@@ -37,6 +38,9 @@ Criar subclasses CDB, LCI, LCA e Poupança.
         Poupança: 0,5% a.m
 
 Usuário fornece:
+    Nome
+    CPF
+    Banco
      o valor a ser investido em R$
      o tempo em meses
      taxa SELIC do ano (Sugestão: 13% e 6%)

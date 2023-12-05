@@ -1,3 +1,4 @@
+package Ultilitarios;
 public enum Pergunta {
     NOME,
     CPF,
@@ -9,4 +10,5 @@ public enum Pergunta {
     TIPO_DE_INVESTIMENTO,
     MENU_INICIAL,
     MENU_FINAL,
+    ARQUIVO,
 }
