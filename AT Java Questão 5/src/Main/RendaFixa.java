@@ -1,10 +1,11 @@
-package TaxaFixa;
+package Main;
 import java.text.MessageFormat;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
+// import java.nio.charset.Charset;
 
 public abstract class RendaFixa {
+    
     protected String nome; //Nome titular da aplicação.
     protected String cpf; //CPF do titular da aplicação.
     protected String banco; //Banco onde a aplicação vai ser feita
@@ -81,7 +82,8 @@ public abstract class RendaFixa {
 
     //Grava as informações da conta em um arquivo.
     public void SalvarArquivo(String nomeArquivo, Double resultado) throws IOException {
-        FileWriter saida = new FileWriter("src/Arquivos/" + nomeArquivo + ".txt", Charset.forName("UTF8"));
+        // FileWriter saida = new FileWriter("arquivo", Charset.forName("UTF8"));
+        FileWriter saida = new FileWriter(MessageFormat.format("src/Arquivos/{0}.txt", nomeArquivo));
         saida.write(toString() + " Resultado do investimento: R$ " + resultado);
         saida.close();
     }

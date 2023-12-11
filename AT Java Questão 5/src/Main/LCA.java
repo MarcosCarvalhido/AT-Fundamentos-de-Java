@@ -1,16 +1,15 @@
-package TaxaFixa;
+package Main;
 import Ultilitarios.Interface;
-
-public final class LCI extends RendaFixa implements Interface{
+public final class LCA extends RendaFixa implements Interface {
     private double taxaFixa; // Taxa fixa de CDI para este tipo de investimento.
 
-    //Define os atributos iniciais de um objeto LCI.
-    public LCI(String nome, String cpf, String banco, double capital, double cdi, int meses){
+    //Define os atributos iniciais de um objeto LCA.
+    public LCA(String nome, String cpf, String banco, double capital, double cdi, int meses){
         super(nome, cpf, banco, capital, cdi, meses);
-        this.taxaFixa = 1.0;
+        this.taxaFixa = 1.05;
     }
 
-    //Sobrescreve o metodo de calcular a renda com os valores da LCI.
+    //Sobrescreve o metodo de calcular a renda com os valores da LCA.
     @Override
     public double calcularResgate(){
         return Math.round(capital * (Math.pow((1 + cdi * (this.taxaFixa /100)) , meses)));
@@ -22,3 +21,4 @@ public final class LCI extends RendaFixa implements Interface{
         return super.toString();
     }
 }
+ 

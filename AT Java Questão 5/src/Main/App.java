@@ -1,10 +1,5 @@
+package Main;
 import java.util.Scanner;
-
-import TaxaFixa.CDB;
-import TaxaFixa.LCA;
-import TaxaFixa.LCI;
-import TaxaFixa.Poupança;
-import TaxaFixa.RendaFixa;
 import Ultilitarios.Pergunta;
 
 public class App {

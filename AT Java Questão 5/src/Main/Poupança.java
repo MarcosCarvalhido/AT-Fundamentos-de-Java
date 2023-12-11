@@ -1,6 +1,5 @@
-package TaxaFixa;
+package Main;
 import Ultilitarios.Interface;
-
 public final class Poupança extends RendaFixa  implements Interface{
     private double taxaFixa; // Taxa fixa de CDI para este tipo de investimento.
     

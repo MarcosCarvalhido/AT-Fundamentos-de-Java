@@ -1,9 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import javax.lang.model.util.ElementScanner6;
-
 
 public class App {
     static Scanner userInput = new Scanner(System.in,"UTF-16");
